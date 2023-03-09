@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Signature;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Plan extends Model
 {
@@ -16,5 +17,8 @@ class Plan extends Model
         'price'
     ];
 
-    
+    public function signatures()
+    {
+        return $this->hasMany(Signature::class);
+    }
 }
