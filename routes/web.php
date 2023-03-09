@@ -35,22 +35,6 @@ require __DIR__.'/auth.php';
 
 Route::get('/test', function() {
 
-    $plan = Plan::create([
-        'name' => 'Last Plan',
-        'short_description' => 'a Terrible plan',
-        'price' => 2990
-    ]);
-
-    $client = Auth::use()->client()->create([
-        'document' => '05929981779',
-        'birthdate' => '1992-07-28'
-    ]);
-
-    $client->signatures()->create([
-        'plan_id' => $plan->id,
-        'status' => SignatureStatus::ACTIVED
-    ]);
-
     return 'hey';
 
 });
