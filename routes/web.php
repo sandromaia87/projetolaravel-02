@@ -1,11 +1,11 @@
 <?php
 
-use App\Enums\SignatureStatus;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SignatureController;
-use App\Models\Plan;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlanController;
+use App\Http\Middleware\TrustProxies;
+use App\Http\Middleware\VerifyCsrfToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::get('/test', [SignatureController::class, 'index']);
+Route::resource('plano', PlanController::class)
+    ->parameters([
+        'plano' => 'plan'
+    ])
+    ->withoutMiddleware([
+        TrustProxies::class,
+        VerifyCsrfToken::class,
+    ]);
