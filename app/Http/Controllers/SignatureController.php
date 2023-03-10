@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SignatureController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'teste' => 'required|string',
+        ]);
+        $param = $validator->fails() ? $validator->messages() : $validator->validated()['teste'];
         $user       = auth()->user();
         
         $name       = $user->name;
@@ -19,7 +24,8 @@ class SignatureController extends Controller
         return view('test', [
             'name' => $name,
             'document' => $document,
-            'status' => $status
+            'status' => $status,
+            'teste' => $param
         ]);
     }
 }
