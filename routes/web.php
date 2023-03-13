@@ -36,7 +36,7 @@ require __DIR__ . '/auth.php';
 
 Route::resource('plano', PlanController::class)
     ->parameters([
-        'plano' => 'plan'
+        'plano' => 'plan:cod'
     ])
     ->withoutMiddleware([
         TrustProxies::class,
