@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class PlanFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->domainWord(),
+            'short_description' => fake()->sentence(),
+            'price' => fake()->numberBetween('1000', '9999'),
+            'cod' => Str::random(4)
         ];
     }
 }

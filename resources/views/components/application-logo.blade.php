@@ -1,5 +1,5 @@
 @php
-    $attributes = $attributes.'h-9 w-auto';
+    $attributes = $attributes.'h-2 w-5';
 @endphp
 
-<img src="./img/logoscorefy.png" {{ $attributes }}>
+<img src="./img/logo-scorest.png" {{ $attributes }}>
